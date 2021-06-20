@@ -20,20 +20,24 @@ const App = (props) => {
 
   return (
     <div>
-      <div className="tree-area">
-        <Tree shaking={shaking} startDrop={startDrop} />
-      </div>
-      <Basket />
-      <button onClick={startShaking} style={{ position: "absolute", top: 0 }}>
+      <div className='tree-area-container'>
+        <div className="tree-area">
+          <Tree shaking={shaking} startDrop={startDrop} />
+        </div>
+        <button className="btn btn-success dropButton" onClick={startShaking}>
         Drop Apples
       </button>
+      </div>
+      <div className="d-flex justify-content-center">
+        <Basket />
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    apples: state.apples
+    apples: state.apples,
   };
 };
 

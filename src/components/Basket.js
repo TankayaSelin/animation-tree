@@ -20,15 +20,7 @@ const Basket = (props) => {
   }, [props.dropedApple]);
 
   return (
-    <div
-      style={{
-        height: "100px",
-        borderRadius: "40%",
-        background: "pink",
-        border: "1px solid grey",
-        position: "relative"
-      }}
-    >
+    <div id='basket-container'>
       {arr.length > 0 &&
         arr.map((apple) => {
           if (apple.dropped) {
