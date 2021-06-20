@@ -4,19 +4,18 @@ import { toggle, drop, animation } from "../actions/index";
 import Apple from "./Apple";
 
 const Tree = (props) => {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(0); //that will us about index and id
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
-    console.log(props.startDrop);
     if (
-      props.startDrop &&
+      props.startDrop && //chech animation tree has done and started to drop apples
       props.apples.length > 0 &&
       counter < props.apples.length
     ) {
       const interval = setTimeout(async () => {
-        await props.animation(counter + 1);
-        await delay(1000);
+        await props.animation(counter + 1); //changed status of animation
+        await delay(1000); 
         await props.toggle(counter + 1); //toggle id of apple which is in apples state
         await props.drop(counter); //return index which should be push into basket array
         setCounter((prev) => prev + 1);
@@ -35,10 +34,10 @@ const Tree = (props) => {
       <div className="middle"></div>
       <div className="top"></div>
       {props.apples.map((apple) => {
-        if (!apple.dropped && !apple.animation) {
+        if (!apple.dropped && !apple.animation) { //render apples which animation is not started
           return <Apple key={apple.id} apple={apple} />;
         }
-        if (!apple.dropped && apple.animation) {
+        if (!apple.dropped && apple.animation) { //render apples which are dropping from the tree
           return <Apple key={apple.id} apple={apple} />;
         }
       })}

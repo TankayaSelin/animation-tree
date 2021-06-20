@@ -9,8 +9,8 @@ const Basket = (props) => {
   useEffect(() => {
     if (props.dropedApple >= 0) {
       const interval = setTimeout(() => {
-        showLoader(true);
-        arr.push(props.apples[props.dropedApple]);
+        showLoader(true); //to render apple which has just dropped into the basket
+        arr.push(props.apples[props.dropedApple]); //to render apples which has already dropped into the basket
       }, 1000);
       return () => {
         showLoader(false);

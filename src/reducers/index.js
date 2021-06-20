@@ -11,20 +11,20 @@ const INITIAL_STATE = {
   
   export const reducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-      case "TOGGLE":
+      case "TOGGLE": //toggle id of apple which is in apples state
         return {
           ...state,
           apples: state.apples.map((item) =>
             item.id === action.payload ? { ...item, dropped: true } : item
           )
         };
-      case "DROP":
+      case "DROP": //return index of apple which will be dropped now
         return {
           ...state,
           dropedApple: action.payload
           // dropedApple: [...state.dropedApple, action.payload]
         };
-      case "ANIMATION":
+      case "ANIMATION": //start to animation for selected apple
         return {
           ...state,
           apples: state.apples.map((item) =>

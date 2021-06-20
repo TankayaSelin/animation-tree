@@ -13,16 +13,14 @@ const Apples = (props) => {
             ? `apple a${props.apple.id} a${props.apple.id}-animation`
             : `apple a${props.apple.id}`
         }
-      >
-        {props.apple.id}
-      </div>
+      ></div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    apples: state.apples
+    apples: state.apples,
   };
 };
 
