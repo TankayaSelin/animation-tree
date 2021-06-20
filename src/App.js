@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./styles.css";
+import { connect } from "react-redux";
+import { toggle } from "./actions/index";
+import Tree from "./components/Tree";
+import Basket from "./components/Basket";
 
-function App() {
+const App = (props) => {
+  const [shaking, setShaking] = useState(false); // start shaking
+  const [startDrop, setStartDrop] = useState(false); //ended shaking and starting to drop apples
+
+  const startShaking = () => {
+    setShaking(true); //starting to shaking
+    const timer = setTimeout(() => {
+      setShaking(false); //stop shaking
+      setStartDrop(true); //starting to drop apples
+    }, 3000);
+    return () => clearTimeout(timer);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="tree-area">
+        <Tree shaking={shaking} startDrop={startDrop} />
+      </div>
+      <Basket />
+      <button onClick={startShaking} style={{ position: "absolute", top: 0 }}>
+        Drop Apples
+      </button>
     </div>
   );
-}
+};
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    apples: state.apples
+  };
+};
+
+export default connect(mapStateToProps, { toggle })(App);
